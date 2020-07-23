@@ -1,52 +1,86 @@
 /*
-*
-*
-*       Complete the handler logic below
-*       
-*       
-*/
+ *
+ *
+ *       Complete the handler logic below
+ *
+ *
+ */
 
 function ConvertHandler() {
-  
-  this.getNum = function(input) {
-    var result;
-    
-    return result;
-  };
-  
-  this.getUnit = function(input) {
-    var result;
-    
-    return result;
-  };
-  
-  this.getReturnUnit = function(initUnit) {
-    var result;
-    
-    return result;
-  };
+  const liquidVolume = ['gal', 'L']
+  const weight = ['lbs', 'kg']
+  const distance = ['mi', 'km']
 
-  this.spellOutUnit = function(unit) {
-    var result;
-    
-    return result;
-  };
-  
-  this.convert = function(initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
-    var result;
-    
-    return result;
-  };
-  
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
-    
-    return result;
-  };
-  
+  this.getNum = function (input) {
+    const result = input.split(/[a-zA-Z]/)[0]
+    console.log('getNum', { result })
+    return result
+  }
+
+  this.getUnit = function (input) {
+    const result = input.split(/(?=[0-9]*)([a-z]+)/gi)[1]
+    console.log('getUnit', { result })
+    return result
+  }
+
+  this.getReturnUnit = function (initUnit) {
+    let result = null
+
+    if (initUnit === liquidVolume[0]) result = liquidVolume[1]
+    if (initUnit === liquidVolume[1]) result = liquidVolume[0]
+    if (initUnit === weight[0]) result = weight[1]
+    if (initUnit === weight[1]) result = weight[0]
+    if (initUnit === distance[0]) result = distance[1]
+    if (initUnit === distance[1]) result = distance[0]
+
+    if (!result) console.warn('*** Incorrect unit submitted!')
+
+    console.log('getReturnUnit', { result })
+    return result
+  }
+
+  this.spellOutUnit = function (unit) {
+    const result = null
+    console.log('spellOutUnit', { result })
+    return result
+  }
+
+  this.convert = function (initNum, initUnit) {
+    const galToL = 3.78541
+    const lbsToKg = 0.453592
+    const miToKm = 1.60934
+    let result = null
+
+    // Imperial [0]
+    if (initUnit === liquidVolume[0]) {
+      result = parseFloat(initNum * galToL)
+    }
+    if (initUnit === weight[0]) {
+      result = parseFloat(initNum * lbsToKg)
+    }
+    if (initUnit === distance[0]) {
+      result = parseFloat(initNum * miToKm)
+    }
+    // Metric [1]
+    if (initUnit === weight[1]) {
+      result = parseFloat(initNum / lbsToKg)
+    }
+    if (initUnit === liquidVolume[1]) {
+      result = parseFloat(initNum / galToL)
+    }
+    if (initUnit === distance[1]) {
+      result = parseFloat(initNum / miToKm)
+    }
+
+    console.log('convert', { result })
+    return result
+  }
+
+  this.getString = function (initNum, initUnit, returnNum, returnUnit) {
+    const result = null
+    console.log('getString', { result })
+    return result
+  }
 }
 
-module.exports = ConvertHandler;
+module.exports = ConvertHandler
