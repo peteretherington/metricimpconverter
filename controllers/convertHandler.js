@@ -53,23 +53,23 @@ function ConvertHandler() {
 
     // Imperial [0]
     if (initUnit === liquidVolume[0]) {
-      result = parseFloat(initNum * galToL)
+      result = Number(initNum * galToL).toFixed(2)
     }
     if (initUnit === weight[0]) {
-      result = parseFloat(initNum * lbsToKg)
+      result = Number(initNum * lbsToKg).toFixed(2)
     }
     if (initUnit === distance[0]) {
-      result = parseFloat(initNum * miToKm)
+      result = Number(initNum * miToKm).toFixed(2)
     }
     // Metric [1]
     if (initUnit === weight[1]) {
-      result = parseFloat(initNum / lbsToKg)
+      result = Number(initNum / lbsToKg).toFixed(2)
     }
     if (initUnit === liquidVolume[1]) {
-      result = parseFloat(initNum / galToL)
+      result = Number(initNum / galToL).toFixed(2)
     }
     if (initUnit === distance[1]) {
-      result = parseFloat(initNum / miToKm)
+      result = Number(initNum / miToKm).toFixed(2)
     }
 
     console.log('convert', { result })
@@ -77,7 +77,7 @@ function ConvertHandler() {
   }
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    const result = null
+    const result = returnNum + returnUnit
     console.log('getString', { result })
     return result
   }
